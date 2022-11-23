@@ -912,7 +912,7 @@ public abstract class WebSocketClient {
                 }
             }
 
-            String upgradeValue = headers.get("Upgrade");
+            String upgradeValue = headers.get("upgrade");
             if (upgradeValue == null) {
                 throw new InvalidServerHandshakeException("There is no header named Upgrade");
             }
