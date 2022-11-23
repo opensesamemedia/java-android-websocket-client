@@ -930,9 +930,9 @@ public abstract class WebSocketClient {
                 throw new InvalidServerHandshakeException("Invalid value for header Connection. Expected: upgrade, received: " + connectionValue);
             }
 
-            String secWebSocketAcceptValue = headers.get("Sec-WebSocket-Accept");
+            String secWebSocketAcceptValue = headers.get("sec-websocket-accept");
             if (secWebSocketAcceptValue == null) {
-                throw new InvalidServerHandshakeException("There is no header named Sec-WebSocket-Accept");
+                throw new InvalidServerHandshakeException("There is no header named sec-websocket-accept");
             }
 
             String keyConcatenation = secWebSocketKey + GUID;
@@ -942,7 +942,7 @@ public abstract class WebSocketClient {
                 byte[] sha1 = md.digest();
                 String secWebSocketAccept = Utils.encodeToBase64String(sha1);
                 if (!secWebSocketAcceptValue.equals(secWebSocketAccept)) {
-                    throw new InvalidServerHandshakeException("Invalid value for header Sec-WebSocket-Accept. Expected: " + secWebSocketAccept + ", received: " + secWebSocketAcceptValue);
+                    throw new InvalidServerHandshakeException("Invalid value for header sec-websocket-accept. Expected: " + secWebSocketAccept + ", received: " + secWebSocketAcceptValue);
                 }
             } catch (NoSuchAlgorithmException e) {
                 throw new RuntimeException("Your platform does not support the SHA-1 algorithm");
